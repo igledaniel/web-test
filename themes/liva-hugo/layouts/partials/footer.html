@@ -25,7 +25,7 @@
     <div class="row justify-content-center">
       <div class="col-12 text-center mb-5">
         <a href="{{ .Site.BaseURL }}">
-          {{ partial "image.html" (dict "Src" .Site.Params.logo "Alt" .Site.Title ) }}
+          {{ partial "image.html" (dict "Src" .Site.Params.logo "Alt" .Site.Title "Width" "10rem" ) }}
         </a>
       </div>
       {{ if or  .Site.Params.mobile .Site.Params.location .Site.Params.email }}         
