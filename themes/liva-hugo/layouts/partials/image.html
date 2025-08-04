@@ -3,5 +3,14 @@
 {{ $class := .Class }}
 
 {{ if $src }}
-  <img src="{{ $src | absURL }}" class="{{ $class }}" alt="{{ $alt }}">
+  {{ if hasPrefix $src "http" }}
+    <img src="{{ $src }}" class="{{ $class }}" alt="{{ $alt }}">
+  {{ else }}
+    {{ $image := resources.Get $src }}
+    {{ if $image }}
+      <img src="{{ $image.RelPermalink }}" class="{{ $class }}" alt="{{ $alt }}">
+    {{ else }}
+      <img src="{{ $src | absURL }}" class="{{ $class }}" alt="{{ $alt }}">
+    {{ end }}
+  {{ end }}
 {{ end }}
