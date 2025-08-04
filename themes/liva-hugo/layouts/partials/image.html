@@ -1,1 +1,16 @@
- <img src="{{ .Params.Image | absURL }}" class="img-fluid w-100 mb-4" alt="{{ .Title | markdownify }}">
+{{ $src := .Src }}
+{{ $alt := .Alt }}
+{{ $class := .Class }}
+
+{{ if $src }}
+  {{ if hasPrefix $src "http" }}
+    <img src="{{ $src }}" class="{{ $class }}" alt="{{ $alt }}">
+  {{ else }}
+    {{ $image := resources.Get $src }}
+    {{ if $image }}
+      <img src="{{ $image.RelPermalink }}" class="{{ $class }}" alt="{{ $alt }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
+    {{ else }}
+      <img src="{{ $src | absURL }}" class="{{ $class }}" alt="{{ $alt }}">
+    {{ end }}
+  {{ end }}
+{{ end }}
