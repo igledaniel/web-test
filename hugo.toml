@@ -100,3 +100,8 @@ link = "#"
 title = "linkedin"
 icon = "ti-linkedin" # themify icon : https://themify.me/themify-icons
 link = "#"
+
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
